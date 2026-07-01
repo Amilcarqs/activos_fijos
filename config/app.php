@@ -68,7 +68,7 @@ return [
 //    'timezone' => 'UTC',
   
     // para La Paz
-    'timezone' => 'America/La_Paz',
+    'timezone' => 'America/La_Paz', 
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

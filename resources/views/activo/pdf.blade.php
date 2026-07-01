@@ -90,7 +90,7 @@
         <tr>
 
             <td width="15%">
-                {{-- aquí puedes poner el logo --}}
+                <img src="storage/activo-fijo.png" alt="">
             </td>
 
             <td width="70%" class="titulo">

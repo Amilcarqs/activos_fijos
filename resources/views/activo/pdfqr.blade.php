@@ -45,12 +45,7 @@
 
     <p>{{ $activo->descrip }}</p>
 
-    {!! QrCode::size(150)->generate(
-        "Codigo: ".$activo->codigo."\n".
-        "Descripcion: ".$activo->descrip."\n".
-        "Oficina: ".$activo->oficina->nombre."\n".
-        "Fecha adquisicion: ".$activo->fadquisicion
-    ) !!}
+    <img src="data:image/png;base64,{{ $activo->qr }}">
 
     <p><strong>Oficina:</strong> {{ $activo->oficina->nombre }}</p>
 
@@ -63,3 +58,5 @@
 </body>
 
 </html>
+
+

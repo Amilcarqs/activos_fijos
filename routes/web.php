@@ -52,6 +52,8 @@ Route::get('/activos/pdf', [ActivoController::class, 'pdf'])
     ->name('activos.pdf');
 Route::get('/activos/qr', [ActivoController::class, 'qr'])
     ->name('activos.qr');
+    Route::get('/activos/pdfqr', [ActivoController::class, 'pdfqr'])
+    ->name('activos.pdfqr');
 
 Route::resource('/activos', ActivoController::class);
 

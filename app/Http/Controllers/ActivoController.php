@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ActivoController extends Controller
 {
@@ -38,8 +39,8 @@ class ActivoController extends Controller
         $grupos = Grupo::All();
         $oficinas = Oficina::All();
         $responsables = Responsable::All();
-        
-        return view('activo.create', compact('activo', 'estados', 'grupos','oficinas', 'responsables'));
+
+        return view('activo.create', compact('activo', 'estados', 'grupos', 'oficinas', 'responsables'));
     }
 
     /**
@@ -91,7 +92,7 @@ class ActivoController extends Controller
         $oficinas = Oficina::All();
         $responsables = Responsable::All();
 
-        return view('activo.edit', compact('activo', 'estados', 'grupos','oficinas', 'responsables'));
+        return view('activo.edit', compact('activo', 'estados', 'grupos', 'oficinas', 'responsables'));
     }
 
     /**
@@ -150,7 +151,7 @@ class ActivoController extends Controller
         ])->get();
 
         $pdf = Pdf::loadView('activo.pdf', compact('activos'))
-          ->setPaper('a4', 'landscape');
+            ->setPaper('a4', 'landscape');
 
         return $pdf->stream('reporte_activos.pdf');
 
@@ -158,7 +159,7 @@ class ActivoController extends Controller
         //return $pdf->download('reporte_activos.pdf');
     }
 
-    //qr
+    //pagina de qr
     public function qr()
     {
         $activos = Activo::with([
@@ -170,5 +171,34 @@ class ActivoController extends Controller
 
         return view('activo.qr', compact('activos'));
     }
+
+
+    // pdf de qr
+    public function pdfqr()
+    {
+        $activos = Activo::with([
+            'estado',
+            'grupo',
+            'oficina',
+            'responsable'
+        ])->get();
+
+        foreach ($activos as $activo) {
+
+            $activo->qr = base64_encode(
+                QrCode::format('png')
+                    ->size(130)
+                    ->generate(
+                        "Codigo: {$activo->codigo}\n" .
+                            "Descripcion: {$activo->descrip}\n" .
+                            "Oficina: {$activo->oficina->nombre}\n" .
+                            "Fecha adquisicion: {$activo->fadquisicion}"
+                    )
+            );
+        }
+
+        $pdf = Pdf::loadView('activo.pdfqr', compact('activos'));
+
+        return $pdf->stream('etiquetas_qr.pdf');
+    }
 }
- 

@@ -430,6 +430,12 @@ return [
             'icon_color' => 'gray',
             'url' => 'activos/qr',
         ],
+        [
+            'text' => 'PDF Etiquetas QR',
+            'icon' => 'fas fa-qrcode',
+            'icon_color' => 'gray',
+            'url' => 'activos/pdfqr',
+        ],
     ],
 
     /*
