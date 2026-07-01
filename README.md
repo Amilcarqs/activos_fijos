@@ -180,6 +180,6 @@ storage/
 
 ## 👤 Autor
 
-**Amilcarqs*
+**Amilcarqs**
 
 GitHub: https://github.com/Amilcarqs
