@@ -8,6 +8,10 @@ Sistema web desarrollado con Laravel para el registro, administración y control
 
 > Agregar aquí las capturas del sistema.
 
+### BD
+
+<img width="761" height="515" alt="bd_activos_fijos" src="https://github.com/user-attachments/assets/fefa4fb1-5b88-4371-ac7a-29f32962a983" />
+
 ### Inicio de sesión
 
 ![Login](docs/images/login.png)
